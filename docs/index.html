@@ -4,54 +4,113 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tech Taboo – Rules</title>
-  <link rel="stylesheet" href="./css/taboo.css" />
+  <title>Tech Taboo - Rules</title>
 
-
+  <link rel="stylesheet" href="./css/rules.css" />
 </head>
 
 <body class="rules-page">
+  <!-- HEADER -->
   <header class="app-header">
     <span class="app-title">🎯 Tech Taboo</span>
   </header>
 
+  <!-- MAIN -->
   <main class="app-main">
-    <div class="rules">
-      <p>One person <strong>explains</strong> the word on screen.</p>
-      <p>Do <span class="highlight">NOT</span> use the forbidden words.</p>
-      <p>The audience <strong>guesses</strong> the term.</p>
-      <p>If a forbidden word is spoken → <span class="highlight">skip the card</span>.</p>
-      <p>Hints and analogies are allowed. Buzzwords are not.</p>
+
+    <svg class="taboo-explain" viewBox="0 0 600 360" width="100%" height="260" aria-hidden="true">
+
+      <!-- Central card -->
+      <rect x="200" y="130" rx="18" ry="18" width="200" height="80" class="term-box" />
+
+      <text x="300" y="180" text-anchor="middle" class="term-text">
+        TERM
+      </text>
+
+      <!-- Forbidden words -->
+      <g class="forbidden-group">
+        <rect x="60" y="60" rx="12" ry="12" width="120" height="44" />
+        <text x="120" y="88" text-anchor="middle">•••••</text>
+
+        <rect x="420" y="60" rx="12" ry="12" width="120" height="44" />
+        <text x="480" y="88" text-anchor="middle">•••••</text>
+
+        <rect x="60" y="260" rx="12" ry="12" width="120" height="44" />
+        <text x="120" y="288" text-anchor="middle">•••••</text>
+
+        <rect x="420" y="260" rx="12" ry="12" width="120" height="44" />
+        <text x="480" y="288" text-anchor="middle">•••••</text>
+      </g>
+
+      <!-- Arrows -->
+      <g class="arrows">
+        <path d="M180 100 L240 140" />
+        <path d="M420 100 L360 140" />
+        <path d="M180 260 L240 220" />
+        <path d="M420 260 L360 220" />
+      </g>
+
+      <!-- Cross marks -->
+      <g class="cross">
+        <line x1="150" y1="90" x2="170" y2="110" />
+        <line x1="170" y1="90" x2="150" y2="110" />
+
+        <line x1="450" y1="90" x2="470" y2="110" />
+        <line x1="470" y1="90" x2="450" y2="110" />
+
+        <line x1="150" y1="290" x2="170" y2="270" />
+        <line x1="170" y1="290" x2="150" y2="270" />
+
+        <line x1="450" y1="290" x2="470" y2="270" />
+        <line x1="470" y1="290" x2="450" y2="270" />
+      </g>
+    </svg>
+
+    <!-- RULES -->
+    <ol class="rules">
+      <li>One person <strong>explains</strong> the word on screen.</li>
+      <li>Do <span class="highlight">NOT</span> use the <span class="forbidden">forbidden</span> words.</li>
+      <li>The audience <strong>guesses</strong> the term.</li>
+      <li>If a forbidden word is spoken → <span class="highlight">skip the card</span>.</li>
+      <li>Hints and analogies are allowed. Buzzwords are not.</li>
+    </ol>
+
+    <!-- SETTINGS -->
+    <div class="settings">
+      <div class="setting">
+        <label for="deckSelect">Choose deck</label>
+        <select id="deckSelect"></select>
+      </div>
+
+      <div class="setting">
+        <label for="timerSelect">Timer duration</label>
+        <select id="timerSelect">
+          <option value="30">30 seconds</option>
+          <option value="60">1 minute</option>
+          <option value="120" selected>2 minutes</option>
+        </select>
+      </div>
     </div>
 
-    <select id="deckSelect"></select>
-
-    <label class="timer-setting">
-      Timer:
-      <select id="timerSelect">
-        <option value="30">30 seconds</option>
-        <option value="60">1 minute</option>
-        <option value="120" selected>2 minutes</option>
-      </select>
-    </label>
-
-
-    <div>
-      <a class="start-game" href="./taboo.html" id="startGame">Start Game</a>
-    </div>
+    <!-- START -->
+    <a class="start-game" href="./taboo.html" id="startGame">
+      Start Game
+    </a>
   </main>
 
+  <!-- FOOTER -->
   <footer class="app-footer">
     <span class="footer-text">Explain concepts. Avoid buzzwords.</span>
   </footer>
-  </div>
+
+  <!-- SCRIPT -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const select = document.getElementById("deckSelect");
       const startBtn = document.getElementById("startGame");
       const timerSelect = document.getElementById("timerSelect");
 
-      // restore saved value
+      // restore saved timer
       const savedTimer = localStorage.getItem("timerDuration");
       if (savedTimer) timerSelect.value = savedTimer;
 
@@ -64,8 +123,7 @@
             option.textContent = deck.name;
             select.appendChild(option);
           });
-        })
-        .catch(err => console.error("Deck load failed:", err));
+        });
 
       startBtn.addEventListener("click", () => {
         localStorage.setItem("selectedDeck", select.value);
@@ -73,8 +131,6 @@
       });
     });
   </script>
-
-
 </body>
 
 </html>

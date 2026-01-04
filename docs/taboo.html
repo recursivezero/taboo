@@ -17,22 +17,37 @@
 
   <!-- HEADER -->
   <header class="app-header">
-    <a href="./index.html" class="home-link">🏠 Home</a>
+    <a href="./index.html" class="home-link">🏠</a>
     <div class="timer" :class="timerClass" x-text="timeDisplay"></div>
+    <button class="hamburger mobile-only" @click="menuOpen = !menuOpen">☰</button>
 
 
-    <div class="header-controls">
-      <!--<select x-model="selectedDeck" @change="loadDeck()">
-        <template x-for="d in decks" :key="d.key">
-          <option :value="d.key" x-text="d.name"></option>
-        </template>
-      </select>-->
+    <div class="header-controls desktop-only">
+      <button @click="toggleTheme()" title="Toggle theme">
+        <span x-text="theme === 'dark' ? '🌙' : '☀️'"></span>
+      </button>
 
       <button @click="toggleAudience()">👁</button>
       <button @click="toggleTimer()" :class="{ active: timerEnabled }">⏱</button>
       <button @click="shuffle()">🔀</button>
+      <button @click="toggleBuzzer()" title="Mute buzzer">
+        <span x-text="buzzerMuted ? '🔇' : '🔊'"></span>
+      </button>
+
     </div>
   </header>
+  <div class="mobile-menu mobile-only" x-show="menuOpen" @click.outside="menuOpen = false">
+
+    <button @click="toggleTheme(); menuOpen=false">🌙 / ☀️ Theme</button>
+    <button @click="toggleAudience(); menuOpen=false">👁 Audience</button>
+    <button @click="toggleTimer(); menuOpen=false">⏱ Timer</button>
+    <button @click="shuffle(); menuOpen=false">🔀 Shuffle</button>
+    <button @click="toggleBuzzer(); menuOpen=false">
+      <span x-text="buzzerMuted ? '🔇 Unmute buzzer' : '🔊 Mute buzzer'"></span>
+    </button>
+
+  </div>
+
 
   <!-- MAIN GAME AREA -->
   <main class="app-main">
@@ -46,22 +61,33 @@
       <div class="term" x-show="!audience" x-text="current.term" :class="{ 'time-up': timeUp }"></div>
       <div class="term" x-show="audience">???</div>
     </div>
+    <div class="slide-counter" x-text="counterText"></div>
   </main>
 
   <!-- FOOTER -->
+
   <footer class="app-footer">
-    <!-- Left: Deck name -->
+    <!-- Prev -->
+    <button class="nav-btn prev" @click="prev()">
+      <span class="icon">◀</span>
+      <span class="label">Prev</span>
+      <span class="key">Left</span>
+    </button>
+
+    <!-- Deck name -->
     <div class="deck-label" x-text="deckName"></div>
 
-    <!-- Center: Controls -->
-    <div class="controls">
-      <button @click="prev()">◀ Prev</button>
-      <button @click="next()">Next ▶</button>
-    </div>
-
-    <!-- Right: Counter -->
-    <div class="counter" x-text="counterText"></div>
+    <!-- Next -->
+    <button class="nav-btn next" @click="next()">
+      <span class="label">Next</span>
+      <span class="icon">▶</span>
+      <span class="key">Right</span>
+    </button>
   </footer>
+
+  <audio id="buzzer" preload="auto">
+    <source src="./sounds/buzzer.mp3" type="audio/mpeg" />
+  </audio>
 
 
   <!-- Alpine game logic -->

@@ -1,40 +1,116 @@
 function taboo() {
   return {
-    // state
+    // -----------------
+    // STATE
+    // -----------------
     selectedDeck: localStorage.getItem("selectedDeck") || "javascript",
     cards: [],
     index: 0,
     animation: "fade-right",
+
     audience: false,
+
     timerDuration: parseInt(localStorage.getItem("timerDuration"), 10) || 60,
     timeLeft: 0,
     timerId: null,
     timerEnabled: true,
     timeUp: false,
-    deckName: "",
+    hasBuzzed: false,
 
-    // lifecycle
+    buzzerMuted: localStorage.getItem("buzzerMuted") === "true",
+
+    deckName: "",
+    theme: localStorage.getItem("theme") || "dark",
+    menuOpen: false,
+
+    // -----------------
+    // INIT
+    // -----------------
     init() {
+      document.documentElement.dataset.theme = this.theme;
       this.loadDeck();
-      this.startTimer();
     },
 
-    // load deck JSON based on selection
+    // -----------------
+    // DECK
+    // -----------------
     async loadDeck() {
+      this.stopTimer();
+
       try {
         const res = await fetch(`./decks/${this.selectedDeck}.json`);
-        if (!res.ok) throw new Error("Deck not found");
-
         const data = await res.json();
+
         this.cards = data.cards || [];
         this.index = 0;
         this.deckName = data.name || this.selectedDeck.toUpperCase();
+
         this.animate("right");
         this.startTimer();
       } catch (err) {
-        console.error("Failed to load deck:", err);
+        console.error("Deck load failed", err);
         this.cards = [];
       }
+    },
+
+    // -----------------
+    // TIMER (SAFE)
+    // -----------------
+    startTimer() {
+      if (!this.timerEnabled) return;
+
+      this.stopTimer();
+
+      this.timeLeft = this.timerDuration;
+      this.timeUp = false;
+      this.hasBuzzed = false;
+
+      this.timerId = setInterval(() => {
+        if (this.timeLeft === 0) {
+          this.stopTimer();
+          this.timeUp = true;
+
+          if (!this.hasBuzzed && !this.buzzerMuted) {
+            this.hasBuzzed = true;
+            const buzzer = document.getElementById("buzzer");
+            buzzer?.play().catch(() => {});
+          }
+          return;
+        }
+
+        this.timeLeft--;
+      }, 1000);
+    },
+
+    stopTimer() {
+      if (this.timerId) {
+        clearInterval(this.timerId);
+        this.timerId = null;
+      }
+    },
+
+    toggleTimer() {
+      this.timerEnabled = !this.timerEnabled;
+      this.timerEnabled ? this.startTimer() : this.stopTimer();
+    },
+
+    // -----------------
+    // BUZZER
+    // -----------------
+    toggleBuzzer() {
+      this.buzzerMuted = !this.buzzerMuted;
+      localStorage.setItem("buzzerMuted", this.buzzerMuted);
+    },
+
+    // -----------------
+    // COMPUTED
+    // -----------------
+    get current() {
+      return this.cards[this.index] || { term: "", forbidden: [] };
+    },
+
+    get counterText() {
+      return `${this.index + 1} / ${this.cards.length}`;
     },
 
     get timeDisplay() {
@@ -47,48 +123,12 @@ function taboo() {
       return this.timeLeft <= 10 ? "warning" : "";
     },
 
-    startTimer() {
-      if (!this.timerEnabled) return;
-
-      clearInterval(this.timerId);
-      this.timeLeft = this.timerDuration;
-      this.timeUp = false;
-
-      this.timerId = setInterval(() => {
-        this.timeLeft--;
-
-        if (this.timeLeft <= 0) {
-          clearInterval(this.timerId);
-          this.timerId = null;
-          this.timeLeft = 0;
-          this.timeUp = true;
-        }
-      }, 1000);
-    },
-
-    toggleTimer() {
-      this.timerEnabled = !this.timerEnabled;
-
-      if (this.timerEnabled) {
-        this.startTimer();
-      } else {
-        clearInterval(this.timerId);
-        this.timerId = null;
-      }
-    },
-
-    // computed
-    get current() {
-      return this.cards[this.index] || { term: "", forbidden: [] };
-    },
-
-    get counterText() {
-      return `${this.index + 1} / ${this.cards.length}`;
-    },
-
-    // navigation
+    // -----------------
+    // NAVIGATION
+    // -----------------
     next() {
       if (!this.cards.length) return;
+      this.stopTimer();
       this.index = (this.index + 1) % this.cards.length;
       this.animate("right");
       this.startTimer();
@@ -96,6 +136,7 @@ function taboo() {
 
     prev() {
       if (!this.cards.length) return;
+      this.stopTimer();
       this.index = (this.index - 1 + this.cards.length) % this.cards.length;
       this.animate("left");
       this.startTimer();
@@ -103,18 +144,29 @@ function taboo() {
 
     shuffle() {
       if (!this.cards.length) return;
+      this.stopTimer();
       this.cards = [...this.cards].sort(() => Math.random() - 0.5);
       this.index = 0;
       this.animate("right");
-      startTimer();
+      this.startTimer();
     },
 
-    // modes
+    // -----------------
+    // UI MODES
+    // -----------------
     toggleAudience() {
       this.audience = !this.audience;
     },
 
-    // animation helper
+    toggleTheme() {
+      this.theme = this.theme === "dark" ? "light" : "dark";
+      document.documentElement.dataset.theme = this.theme;
+      localStorage.setItem("theme", this.theme);
+    },
+
+    // -----------------
+    // ANIMATION
+    // -----------------
     animate(dir) {
       this.animation = "";
       requestAnimationFrame(() => {
@@ -122,13 +174,16 @@ function taboo() {
       });
     },
 
-    // keyboard shortcuts
+    // -----------------
+    // KEYBOARD
+    // -----------------
     keys(e) {
       if (e.key === "ArrowRight") this.next();
       if (e.key === "ArrowLeft") this.prev();
       if (e.key === "a") this.toggleAudience();
       if (e.key === "s") this.shuffle();
       if (e.key === "t") this.startTimer();
+      if (e.key === "m") this.toggleBuzzer(); // ⬅ bonus shortcut
     }
   };
 }
