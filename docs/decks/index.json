@@ -1,0 +1,16 @@
+{
+  "decks": [
+    {
+      "key": "javascript",
+      "name": "JavaScript Basics"
+    },
+    {
+      "key": "react",
+      "name": "React Concepts"
+    },
+    {
+      "key": "web",
+      "name": "Web Fundamentals"
+    }
+  ]
+}

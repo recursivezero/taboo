@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Taboo</title>
+
+  <!-- Game CSS -->
+  <link rel="stylesheet" href="./css/taboo.css" />
+
+  <!-- Alpine.js -->
+  <!--<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>-->
+</head>
+
+<body class="game-page" x-data="taboo()" x-init="init()" @keydown.window="keys($event)">
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <a href="./index.html" class="home-link">🏠 Home</a>
+    <div class="timer" :class="timerClass" x-text="timeDisplay"></div>
+
+
+    <div class="header-controls">
+      <!--<select x-model="selectedDeck" @change="loadDeck()">
+        <template x-for="d in decks" :key="d.key">
+          <option :value="d.key" x-text="d.name"></option>
+        </template>
+      </select>-->
+
+      <button @click="toggleAudience()">👁</button>
+      <button @click="toggleTimer()" :class="{ active: timerEnabled }">⏱</button>
+      <button @click="shuffle()">🔀</button>
+    </div>
+  </header>
+
+  <!-- MAIN GAME AREA -->
+  <main class="app-main">
+    <div class="content" :class="animation">
+      <div class="forbidden">
+        <template x-for="w in current.forbidden" :key="w">
+          <span x-text="w"></span>
+        </template>
+      </div>
+
+      <div class="term" x-show="!audience" x-text="current.term" :class="{ 'time-up': timeUp }"></div>
+      <div class="term" x-show="audience">???</div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    <div class="controls">
+      <button @click="prev()">◀ Prev</button>
+      <button @click="next()">Next ▶</button>
+    </div>
+
+    <div class="counter" x-text="counterText"></div>
+  </footer>
+
+  <!-- Alpine game logic -->
+  <script src="./js/taboo.js?v=1.0.1" defer></script>
+  <!-- Alpine.js AFTER -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+
+</html>

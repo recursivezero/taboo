@@ -1,0 +1,105 @@
+{
+  "name": "React Concepts",
+  "cards": [
+    {
+      "term": "React Hook",
+      "forbidden": [
+        "state",
+        "useEffect",
+        "component",
+        "lifecycle",
+        "function"
+      ]
+    },
+    {
+      "term": "Virtual DOM",
+      "forbidden": [
+        "diff",
+        "render",
+        "browser",
+        "performance",
+        "tree"
+      ]
+    },
+    {
+      "term": "JSX",
+      "forbidden": [
+        "html",
+        "syntax",
+        "template",
+        "javascript",
+        "xml"
+      ]
+    },
+    {
+      "term": "Props",
+      "forbidden": [
+        "data",
+        "component",
+        "parameter",
+        "passing",
+        "readonly"
+      ]
+    },
+    {
+      "term": "State",
+      "forbidden": [
+        "data",
+        "change",
+        "component",
+        "mutable",
+        "hook"
+      ]
+    },
+    {
+      "term": "Controlled Component",
+      "forbidden": [
+        "input",
+        "form",
+        "state",
+        "value",
+        "onChange"
+      ]
+    },
+    {
+      "term": "Context API",
+      "forbidden": [
+        "provider",
+        "consumer",
+        "prop",
+        "global",
+        "tree"
+      ]
+    },
+    {
+      "term": "Key Prop",
+      "forbidden": [
+        "list",
+        "array",
+        "render",
+        "unique",
+        "element"
+      ]
+    },
+    {
+      "term": "Memoization",
+      "forbidden": [
+        "performance",
+        "cache",
+        "useMemo",
+        "recompute",
+        "optimize"
+      ]
+    },
+    {
+      "term": "Reconciliation",
+      "forbidden": [
+        "diff",
+        "virtual",
+        "update",
+        "render",
+        "process"
+      ]
+    }
+  ]
+}

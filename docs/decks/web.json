@@ -1,0 +1,105 @@
+{
+  "name": "Web Fundamentals",
+  "cards": [
+    {
+      "term": "HTTP",
+      "forbidden": [
+        "protocol",
+        "request",
+        "response",
+        "status",
+        "server"
+      ]
+    },
+    {
+      "term": "REST API",
+      "forbidden": [
+        "endpoint",
+        "http",
+        "request",
+        "response",
+        "resource"
+      ]
+    },
+    {
+      "term": "CORS",
+      "forbidden": [
+        "browser",
+        "security",
+        "origin",
+        "header",
+        "request"
+      ]
+    },
+    {
+      "term": "Cookie",
+      "forbidden": [
+        "storage",
+        "browser",
+        "session",
+        "header",
+        "data"
+      ]
+    },
+    {
+      "term": "Local Storage",
+      "forbidden": [
+        "browser",
+        "storage",
+        "key",
+        "value",
+        "persistent"
+      ]
+    },
+    {
+      "term": "Session Storage",
+      "forbidden": [
+        "browser",
+        "storage",
+        "tab",
+        "temporary",
+        "data"
+      ]
+    },
+    {
+      "term": "DNS",
+      "forbidden": [
+        "domain",
+        "ip",
+        "server",
+        "lookup",
+        "name"
+      ]
+    },
+    {
+      "term": "HTTPS",
+      "forbidden": [
+        "secure",
+        "ssl",
+        "encryption",
+        "certificate",
+        "http"
+      ]
+    },
+    {
+      "term": "CDN",
+      "forbidden": [
+        "cache",
+        "server",
+        "performance",
+        "location",
+        "delivery"
+      ]
+    },
+    {
+      "term": "SEO",
+      "forbidden": [
+        "search",
+        "ranking",
+        "google",
+        "optimization",
+        "meta"
+      ]
+    }
+  ]
+}

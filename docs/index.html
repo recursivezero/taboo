@@ -4,80 +4,77 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tech Taboo</title>
-  <style>
-    body {
-      margin: 0;
-      background: #020617;
-      color: #e5e7eb;
-      font-family: system-ui, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  <title>Tech Taboo – Rules</title>
+  <link rel="stylesheet" href="./css/taboo.css" />
 
-    .wrap {
-      max-width: 720px;
-      padding: 48px;
-      text-align: center;
-    }
 
-    h1 {
-      font-size: 3rem;
-      color: #38bdf8;
-      margin-bottom: 12px;
-    }
-
-    p {
-      font-size: 1.15rem;
-      line-height: 1.6;
-      color: #cbd5f5;
-    }
-
-    ul {
-      margin: 28px auto;
-      max-width: 520px;
-      text-align: left;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    a.start {
-      display: inline-block;
-      margin-top: 32px;
-      padding: 14px 30px;
-      background: #38bdf8;
-      color: #020617;
-      border-radius: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-  </style>
 </head>
 
-<body>
-  <div class="wrap">
-    <h1>🎯 Tech Taboo</h1>
+<body class="rules-page">
+  <header class="app-header">
+    <span class="app-title">🎯 Tech Taboo</span>
+  </header>
 
-    <p>
-      A concept-first guessing game for developers.
-      Explain the idea. Avoid the buzzwords.
-    </p>
+  <main class="app-main">
+    <div class="rules">
+      <p>One person <strong>explains</strong> the word on screen.</p>
+      <p>Do <span class="highlight">NOT</span> use the forbidden words.</p>
+      <p>The audience <strong>guesses</strong> the term.</p>
+      <p>If a forbidden word is spoken → <span class="highlight">skip the card</span>.</p>
+      <p>Hints and analogies are allowed. Buzzwords are not.</p>
+    </div>
 
-    <h2>Rules</h2>
-    <ul>
-      <li>One person explains the highlighted term</li>
-      <li>Forbidden words must not be spoken</li>
-      <li>The audience guesses the term</li>
-      <li>Say a forbidden word → skip the card</li>
-    </ul>
+    <select id="deckSelect"></select>
 
-    <a class="start" href="./game.html">Start Game</a>
+    <label class="timer-setting">
+      Timer:
+      <select id="timerSelect">
+        <option value="30">30 seconds</option>
+        <option value="60">1 minute</option>
+        <option value="120" selected>2 minutes</option>
+      </select>
+    </label>
+
+
+    <div>
+      <a class="start-game" href="./taboo.html" id="startGame">Start Game</a>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <span class="footer-text">Explain concepts. Avoid buzzwords.</span>
+  </footer>
   </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const select = document.getElementById("deckSelect");
+      const startBtn = document.getElementById("startGame");
+      const timerSelect = document.getElementById("timerSelect");
+
+      // restore saved value
+      const savedTimer = localStorage.getItem("timerDuration");
+      if (savedTimer) timerSelect.value = savedTimer;
+
+      fetch("./decks/index.json")
+        .then(res => res.json())
+        .then(data => {
+          data.decks.forEach(deck => {
+            const option = document.createElement("option");
+            option.value = deck.key;
+            option.textContent = deck.name;
+            select.appendChild(option);
+          });
+        })
+        .catch(err => console.error("Deck load failed:", err));
+
+      startBtn.addEventListener("click", () => {
+        localStorage.setItem("selectedDeck", select.value);
+        localStorage.setItem("timerDuration", timerSelect.value);
+      });
+    });
+  </script>
+
+
 </body>
 
 </html>

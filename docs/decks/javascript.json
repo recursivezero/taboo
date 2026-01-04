@@ -1,0 +1,105 @@
+{
+  "name": "JavaScript Basics",
+  "cards": [
+    {
+      "term": "Closure",
+      "forbidden": [
+        "function",
+        "scope",
+        "variable",
+        "lexical",
+        "inner"
+      ]
+    },
+    {
+      "term": "Promise",
+      "forbidden": [
+        "async",
+        "await",
+        "then",
+        "callback",
+        "resolve"
+      ]
+    },
+    {
+      "term": "Hoisting",
+      "forbidden": [
+        "variable",
+        "function",
+        "declaration",
+        "undefined",
+        "scope"
+      ]
+    },
+    {
+      "term": "Event Loop",
+      "forbidden": [
+        "queue",
+        "stack",
+        "single-thread",
+        "async",
+        "browser"
+      ]
+    },
+    {
+      "term": "Prototype",
+      "forbidden": [
+        "object",
+        "inheritance",
+        "class",
+        "constructor",
+        "method"
+      ]
+    },
+    {
+      "term": "Arrow Function",
+      "forbidden": [
+        "this",
+        "function",
+        "syntax",
+        "bind",
+        "context"
+      ]
+    },
+    {
+      "term": "Debounce",
+      "forbidden": [
+        "delay",
+        "timeout",
+        "event",
+        "performance",
+        "input"
+      ]
+    },
+    {
+      "term": "Throttle",
+      "forbidden": [
+        "limit",
+        "rate",
+        "event",
+        "performance",
+        "scroll"
+      ]
+    },
+    {
+      "term": "Immutability",
+      "forbidden": [
+        "object",
+        "change",
+        "state",
+        "mutation",
+        "copy"
+      ]
+    },
+    {
+      "term": "Polyfill",
+      "forbidden": [
+        "browser",
+        "support",
+        "feature",
+        "implementation",
+        "fallback"
+      ]
+    }
+  ]
+}
