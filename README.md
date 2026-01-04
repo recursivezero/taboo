@@ -1,31 +1,144 @@
-# Template Repository
+# Tech Taboo 🎯
 
-![Template][template]
-![License][license]
-![Open Issues][issues]
-![Commit Count][commits]
-![Total Pull Request][PR]
+Tech Taboo is a lightweight, open-source browser game inspired by the classic Taboo game.
+The goal is simple: **explain a technical concept without using common buzzwords**.
 
-This is template repository of RecursiveZero.
+It’s designed for JavaScript meetups, team learning sessions, onboarding, and interview prep —
+anywhere clarity of understanding matters more than memorization.
 
-## How to use this Template repository
+👉 Live demo: https://recursivezero.github.io/taboo
 
-- Open this [repository][repo] in GitHub
-- Click on `use this template` tab; near _star_ tab
-- Make necessary changes in
-  - _package.json_
-    - replace _template_ with your project name.
-  - markdown files under _.github_ folder
-    - change contact email address and url wherever mentioned.
-  - CODEOWNERS file
+---
 
-> :copyright: _RecursiveZero_ Private Limited
+## How the Game Works
 
-> <!-- References -->
+- One player explains the **term shown on screen**
+- A list of **forbidden words** is visible
+- The audience tries to guess the term
+- If a forbidden word is spoken → **skip the card**
+- A **timer and buzzer** keep the pace fast
+- Keyboard shortcuts and mobile support included
 
-[template]: https://badgen.net/static/github/template?icon=github
-[repo]: https://github.com/recursivezero/template
-[license]: https://badgen.net/github/license/recursivezero/template
-[issues]: https://badgen.net/github/open-issues/recursivezero/template
-[PR]: https://badgen.net/github/prs/recursivezero/template
-[commits]: https://badgen.net/github/commits/recursivezero/taboo/main?color=green
+The game encourages explaining ideas clearly, without relying on buzzwords.
+
+---
+
+## Features
+
+- 🧠 Concept-first learning (no buzzwords)
+- ⏱ Timer with buzzer (mute supported)
+- ⌨️ Keyboard shortcuts
+- 📱 Mobile-friendly UI
+- 🌗 Dark / Light theme
+- 📦 JSON-based decks (easy to extend)
+- 🚀 Fully static, no backend required
+
+---
+
+## Tech Stack (Intentionally Minimal)
+
+- **HTML** – semantic markup
+- **CSS** – responsive layout, animations, theming
+- **Alpine.js** – lightweight state management
+- **GitHub Pages** – hosting
+
+No build tools. No framework lock-in. No backend.
+
+---
+
+## Project Structure
+
+
+all files are under `docs` folder for GitHub pages hosting purpose
+
+---
+
+## Deck Format
+
+Decks are simple JSON files.
+
+Example:
+
+```json
+{
+  "name": "JavaScript Basics",
+  "cards": [
+    {
+      "term": "Closure",
+      "forbidden": ["function", "scope", "variable", "lexical"]
+    },
+    {
+      "term": "Promise",
+      "forbidden": ["async", "await", "then", "callback"]
+    }
+  ]
+}
+
+To add a new deck:
+
+1. Create a new JSON file in decks/
+
+
+2. Add it to decks/index.json
+
+
+3. Reload the app
+
+
+
+No code changes needed.
+
+
+---
+
+Keyboard Shortcuts
+
+Key	Action
+
+← / →	Previous / Next card
+A	Toggle audience mode
+S	Shuffle deck
+T	Start / restart timer
+M	Mute / unmute buzzer
+
+
+
+---
+
+Why This Project Exists
+
+In many tech discussions, people know the terminology but struggle to explain the underlying idea. Tech Taboo is a small experiment to encourage clear thinking, simple explanations, and better communication.
+
+It was built in about 5–6 hours as a focused learning-in-public project.
+
+
+---
+
+Contributing
+
+Contributions are welcome.
+
+Some ideas you could explore:
+
+New decks (frontend, backend, system design, etc.)
+
+Team scoring mode
+
+Swipe-only navigation for mobile
+
+Accessibility improvements
+
+Visual timer indicators
+
+
+Feel free to fork, experiment, and adapt it for your use case.
+
+
+---
+
+License
+
+MIT License
+Use it, modify it, and share it freely.
+
+---
