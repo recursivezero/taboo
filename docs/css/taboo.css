@@ -251,22 +251,34 @@ body {
   color: #020617;
 }
 
-/* FOOTER */
-.game-page .app-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 72px;
-
-  display: flex;
+/* FOOTER LAYOUT */
+.app-footer {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
+  padding: 16px 24px;
+}
 
-  padding: 0 32px;
-  background: rgba(2, 6, 23, 0.9);
-  border-top: 1px solid #1e293b;
-  z-index: 20;
+/* Left: deck name */
+.deck-label {
+  justify-self: start;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #c42ec9;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Center: controls */
+.app-footer .controls {
+  justify-self: center;
+  display: flex;
+  gap: 16px;
+}
+
+/* Right: counter */
+.app-footer .counter {
+  justify-self: end;
 }
 
 /* =========================
@@ -370,6 +382,19 @@ select {
   padding: 8px 14px;
   border-radius: 12px;
   border: 1px solid #1e293b;
+}
+
+/* GAME PAGE FOOTER (FIX) */
+.game-page .app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 72px;
+  background: rgba(2, 6, 23, 0.9);
+  border-top: 1px solid #1e293b;
+  z-index: 20;
 }
 
 /* =========================

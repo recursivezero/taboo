@@ -11,6 +11,14 @@
     {
       "key": "web",
       "name": "Web Fundamentals"
+    },
+    {
+      "key": "html",
+      "name": "HTML Fundamentals"
+    },
+    {
+      "key": "css",
+      "name": "CSS Overview"
     }
   ]
 }

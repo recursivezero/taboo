@@ -1,0 +1,105 @@
+{
+  "name": "CSS Fundamentals",
+  "cards": [
+    {
+      "term": "Box Model",
+      "forbidden": [
+        "margin",
+        "padding",
+        "border",
+        "width",
+        "height"
+      ]
+    },
+    {
+      "term": "Flexbox",
+      "forbidden": [
+        "display",
+        "flex",
+        "align",
+        "justify",
+        "container"
+      ]
+    },
+    {
+      "term": "Grid",
+      "forbidden": [
+        "rows",
+        "columns",
+        "layout",
+        "template",
+        "gap"
+      ]
+    },
+    {
+      "term": "Specificity",
+      "forbidden": [
+        "priority",
+        "important",
+        "selector",
+        "override",
+        "order"
+      ]
+    },
+    {
+      "term": "Position",
+      "forbidden": [
+        "absolute",
+        "relative",
+        "fixed",
+        "top",
+        "left"
+      ]
+    },
+    {
+      "term": "Z-Index",
+      "forbidden": [
+        "layer",
+        "stack",
+        "position",
+        "overlap",
+        "depth"
+      ]
+    },
+    {
+      "term": "Media Query",
+      "forbidden": [
+        "responsive",
+        "screen",
+        "breakpoint",
+        "width",
+        "device"
+      ]
+    },
+    {
+      "term": "Pseudo-class",
+      "forbidden": [
+        "hover",
+        "focus",
+        "active",
+        "state",
+        "selector"
+      ]
+    },
+    {
+      "term": "Overflow",
+      "forbidden": [
+        "scroll",
+        "hidden",
+        "auto",
+        "content",
+        "container"
+      ]
+    },
+    {
+      "term": "CSS Variable",
+      "forbidden": [
+        "custom",
+        "property",
+        "root",
+        "value",
+        "reuse"
+      ]
+    }
+  ]
+}

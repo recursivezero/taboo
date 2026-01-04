@@ -50,13 +50,19 @@
 
   <!-- FOOTER -->
   <footer class="app-footer">
+    <!-- Left: Deck name -->
+    <div class="deck-label" x-text="deckName"></div>
+
+    <!-- Center: Controls -->
     <div class="controls">
       <button @click="prev()">◀ Prev</button>
       <button @click="next()">Next ▶</button>
     </div>
 
+    <!-- Right: Counter -->
     <div class="counter" x-text="counterText"></div>
   </footer>
+
 
   <!-- Alpine game logic -->
   <script src="./js/taboo.js?v=1.0.1" defer></script>

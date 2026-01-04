@@ -11,6 +11,7 @@ function taboo() {
     timerId: null,
     timerEnabled: true,
     timeUp: false,
+    deckName: "",
 
     // lifecycle
     init() {
@@ -27,7 +28,7 @@ function taboo() {
         const data = await res.json();
         this.cards = data.cards || [];
         this.index = 0;
-
+        this.deckName = data.name || this.selectedDeck.toUpperCase();
         this.animate("right");
         this.startTimer();
       } catch (err) {

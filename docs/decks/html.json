@@ -1,0 +1,105 @@
+{
+  "name": "HTML Fundamentals",
+  "cards": [
+    {
+      "term": "Semantic HTML",
+      "forbidden": [
+        "meaning",
+        "div",
+        "section",
+        "tag",
+        "accessibility"
+      ]
+    },
+    {
+      "term": "DOCTYPE",
+      "forbidden": [
+        "html",
+        "browser",
+        "standards",
+        "mode",
+        "quirks"
+      ]
+    },
+    {
+      "term": "Form",
+      "forbidden": [
+        "input",
+        "submit",
+        "button",
+        "action",
+        "method"
+      ]
+    },
+    {
+      "term": "Anchor Tag",
+      "forbidden": [
+        "link",
+        "href",
+        "url",
+        "navigate",
+        "page"
+      ]
+    },
+    {
+      "term": "Meta Tag",
+      "forbidden": [
+        "head",
+        "charset",
+        "viewport",
+        "seo",
+        "description"
+      ]
+    },
+    {
+      "term": "Alt Attribute",
+      "forbidden": [
+        "image",
+        "accessibility",
+        "screen",
+        "reader",
+        "text"
+      ]
+    },
+    {
+      "term": "Iframe",
+      "forbidden": [
+        "embed",
+        "page",
+        "content",
+        "external",
+        "window"
+      ]
+    },
+    {
+      "term": "List",
+      "forbidden": [
+        "ul",
+        "ol",
+        "li",
+        "items",
+        "bullet"
+      ]
+    },
+    {
+      "term": "Table",
+      "forbidden": [
+        "row",
+        "column",
+        "tr",
+        "td",
+        "data"
+      ]
+    },
+    {
+      "term": "Script Tag",
+      "forbidden": [
+        "javascript",
+        "execute",
+        "code",
+        "src",
+        "async"
+      ]
+    }
+  ]
+}
