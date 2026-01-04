@@ -116,22 +116,45 @@ body {
 
 .forbidden {
   position: absolute;
-  top: 32px;
-  left: 32px;
+  top: 24px;
+  left: 24px;
+  right: 24px;
 
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
 
-  font-size: 1.6rem;
+  max-height: 32vh;
+  overflow-y: auto;
+  padding-inline: 12px;
+  padding-block: 8px;
+
+  font-size: clamp(1rem, 1.2vw, 1.4rem);
   font-weight: 700;
   color: var(--danger);
+  z-index: 2;
+}
+
+.forbidden-title {
+  grid-column: 1 / -1;
+  /* 👈 span full width of grid */
+
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+
+  color: var(--muted);
+  text-transform: uppercase;
+
+  padding: 4px 2px 8px;
 }
 
 .forbidden span {
   background: color-mix(in srgb, var(--danger) 18%, transparent);
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 12px;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* TERM */
@@ -143,10 +166,15 @@ body {
   align-items: center;
   justify-content: center;
 
-  font-size: clamp(4rem, 8vw, 7rem);
+  padding: 20vh 24px 16vh;
+  /* 👈 breathing room, NOT fixed pixels */
+
+  font-size: clamp(3.5rem, 8vw, 7rem);
   font-weight: 900;
   color: var(--accent);
   text-align: center;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .term.time-up {
@@ -371,5 +399,27 @@ button {
 
   .nav-btn .icon {
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .forbidden {
+    left: 12px;
+    right: 12px;
+    padding-inline: 10px;
+
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    max-height: 28vh;
+    font-size: 0.95rem;
+  }
+
+  .forbidden-title {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .term {
+    font-size: clamp(2.6rem, 9vw, 4.2rem);
+    padding: 32vh 16px 14vh;
   }
 }

@@ -123,6 +123,10 @@ function taboo() {
       return this.timeLeft <= 10 ? "warning" : "";
     },
 
+    get uniqueForbidden() {
+      return [...new Set(this.current.forbidden || [])];
+    },
+
     // -----------------
     // NAVIGATION
     // -----------------
