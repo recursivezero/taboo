@@ -6,7 +6,7 @@ The goal is simple: **explain a technical concept without using common buzzwords
 It’s designed for JavaScript meetups, team learning sessions, onboarding, and interview prep —
 anywhere clarity of understanding matters more than memorization.
 
-👉 Live demo: https://recursivezero.github.io/taboo
+👉 Live demo: <https://recursivezero.github.io/taboo>
 
 ---
 
@@ -48,7 +48,6 @@ No build tools. No framework lock-in. No backend.
 
 ## Project Structure
 
-
 all files are under `docs` folder for GitHub pages hosting purpose
 
 ---
@@ -75,46 +74,39 @@ Example:
 }
 ```
 
-To add a new deck:
+### To add a new deck
 
 1. Create a new JSON file in decks/
 
-
 2. Add it to decks/index.json
-
 
 3. Reload the app
 
-
 No code changes needed.
-
 
 ---
 
 Keyboard Shortcuts
 
-Key	Action
+Key Action
 
-← / →	Previous / Next card
-A	Toggle audience mode
-S	Shuffle deck
-T	Start / restart timer
-M	Mute / unmute buzzer
-
-
+- <kbd>←</kbd> / <kbd>→</kbd> Previous / Next card
+- <kbd>A</kbd> Toggle audience mode
+- <kbd>S</kbd> Shuffle deck
+- <kbd>T</kbd> Start / restart timer
+- <kbd>M</kbd> Mute / unmute buzzer
 
 ---
 
-Why This Project Exists
+## Why This Project Exists
 
 In many tech discussions, people know the terminology but struggle to explain the underlying idea. Tech Taboo is a small experiment to encourage clear thinking, simple explanations, and better communication.
 
 It was built in about 5–6 hours as a focused learning-in-public project.
 
-
 ---
 
-Contributing
+## Contributing
 
 Contributions are welcome.
 
@@ -130,13 +122,11 @@ Accessibility improvements
 
 Visual timer indicators
 
-
 Feel free to fork, experiment, and adapt it for your use case.
-
 
 ---
 
-License
+## License
 
 MIT License
 Use it, modify it, and share it freely.
