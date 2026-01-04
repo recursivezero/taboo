@@ -73,6 +73,7 @@ Example:
     }
   ]
 }
+```
 
 To add a new deck:
 
@@ -83,7 +84,6 @@ To add a new deck:
 
 
 3. Reload the app
-
 
 
 No code changes needed.
