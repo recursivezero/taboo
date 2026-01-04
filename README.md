@@ -19,9 +19,7 @@ This is template repository of RecursiveZero.
     - change contact email address and url wherever mentioned.
   - CODEOWNERS file
 
-
 > :copyright: _RecursiveZero_ Private Limited
-
 
 > <!-- References -->
 
@@ -30,6 +28,4 @@ This is template repository of RecursiveZero.
 [license]: https://badgen.net/github/license/recursivezero/template
 [issues]: https://badgen.net/github/open-issues/recursivezero/template
 [PR]: https://badgen.net/github/prs/recursivezero/template
-[commits]: https://badgen.net/github/commits/recursivezero/template/main?color=green
-
-
+[commits]: https://badgen.net/github/commits/recursivezero/taboo/main?color=green
