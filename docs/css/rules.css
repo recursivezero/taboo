@@ -4,178 +4,87 @@
   --accent: #38bdf8;
   --muted: #94a3b8;
   --danger: #dc2626;
+  --border: #1e293b;
+  --panel: rgba(2, 6, 23, 0.9);
 }
 
 * {
   box-sizing: border-box;
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html,
 body {
   margin: 0;
-  width: 100%;
   height: 100%;
   background: var(--bg);
   color: var(--text);
 }
 
-/* PAGE */
+/* =========================
+   PAGE GRID LAYOUT
+   ========================= */
+
 .rules-page {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  display: grid;
+  grid-template-rows: 72px 1fr 72px;
+  height: 100vh;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+   ========================= */
+
 .rules-page .app-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  height: 72px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: rgba(2, 6, 23, 0.9);
-  border-bottom: 1px solid #1e293b;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
 }
 
 .rules-page .app-title {
   font-size: 1.5rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--accent);
 }
 
-/* MAIN */
-.rules-page .app-main {
-  position: absolute;
-  top: 72px;
-  bottom: 72px;
-  left: 0;
-  right: 0;
+/* =========================
+   MAIN CONTENT (SCROLLABLE)
+   ========================= */
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.rules-page .app-main {
+  display: grid;
+  justify-items: center;
+  align-content: start;
 
   gap: 28px;
-  text-align: center;
-  padding-inline: 12px;
-  padding-block: 24px;
+  padding: 24px 16px;
+
+  overflow-y: auto;
 }
 
-/* RULE TEXT */
-.rules {
-  max-width: 720px;
-  text-align: left;
-}
-
-.rules li {
-  font-size: 1.25rem;
-  line-height: 1.6;
-  color: #cbd5f5;
-  margin-bottom: 12px;
-}
-
-.highlight {
-  color: var(--accent);
-  font-weight: 700;
-}
-
-/* CONTROLS */
-select {
-  padding: 10px 16px;
-  font-size: 1rem;
-  border-radius: 12px;
-  border: 2px solid #1e293b;
-  background: #020617;
-  color: var(--text);
-}
-
-.timer-setting {
-  font-size: 1rem;
-}
-
-/* START BUTTON */
-.start-game {
-  display: inline-block;
-
-  padding: 16px 36px;
-  font-size: 1.4rem;
-  font-weight: 700;
-
-  background: var(--accent);
-  color: #020617;
-
-  border-radius: 16px;
-  text-decoration: none;
-  border: none;
-
-  cursor: pointer;
-  transition: transform 150ms ease, box-shadow 150ms ease;
-}
-
-.start-game:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35);
-}
-
-/* FOOTER */
-.rules-page .app-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-
-  height: 72px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: rgba(2, 6, 23, 0.9);
-  border-top: 1px solid #1e293b;
-}
-
-.forbidden {
-  background: color-mix(in srgb, var(--danger) 18%, transparent);
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: red;
-}
-
-.footer-text {
-  color: var(--muted);
-}
-
-.settings {
-  display: grid;
-  gap: 20px;
-  margin: 24px 0;
-  width: 100%;
-  max-width: 420px;
-}
-
-.setting {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.setting label {
-  font-weight: 600;
-  color: var(--muted);
-}
+/* =========================
+   SVG EXPLAINER
+   ========================= */
 
 .taboo-explain {
-  margin-bottom: 32px;
+  width: 100%;
+  max-width: 600px;
+
+  /* 🔑 HEIGHT SAFETY */
+  max-height: min(40vh, 260px);
+  aspect-ratio: 5 / 3;
+
+  height: auto;
+  display: block;
+}
+
+@media (max-height: 520px) {
+  .taboo-explain {
+    max-height: 32vh;
+  }
 }
 
 /* Central term */
@@ -193,9 +102,9 @@ select {
   letter-spacing: 0.15em;
 }
 
-/* Forbidden items */
+/* Forbidden blocks */
 .forbidden-group rect {
-  fill: rgba(251, 113, 133, 0.18);
+  fill: color-mix(in srgb, var(--danger) 18%, transparent);
 }
 
 .forbidden-group text {
@@ -219,7 +128,7 @@ select {
   stroke-width: 3;
 }
 
-/* Animations */
+/* Arrow animation */
 @keyframes arrowPulse {
   0% {
     opacity: 0.3;
@@ -231,5 +140,130 @@ select {
 
   100% {
     opacity: 0.3;
+  }
+}
+
+/* =========================
+   RULES LIST
+   ========================= */
+
+.rules {
+  width: 100%;
+  max-width: 720px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+.rules li {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #cbd5f5;
+  margin-bottom: 12px;
+}
+
+.highlight {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.forbidden {
+  background: color-mix(in srgb, var(--danger) 18%, transparent);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+/* =========================
+   SETTINGS
+   ========================= */
+
+.settings {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.setting {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.setting label {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+select {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background: #020617;
+  color: var(--text);
+}
+
+/* =========================
+   START BUTTON
+   ========================= */
+
+.start-game {
+  display: inline-block;
+
+  padding: 16px 36px;
+  font-size: 1.4rem;
+  font-weight: 800;
+
+  background: var(--accent);
+  color: #020617;
+
+  border-radius: 16px;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.start-game:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.rules-page .app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+}
+
+.footer-text {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* =========================
+   MOBILE REFINEMENTS
+   ========================= */
+
+@media (max-width: 480px) {
+  .rules-page .app-main {
+    gap: 20px;
+    padding: 20px 12px;
+  }
+
+  .rules li {
+    font-size: 1.1rem;
+  }
+
+  .start-game {
+    width: 100%;
+    text-align: center;
   }
 }
