@@ -15,6 +15,7 @@ function taboo() {
     timerId: null,
     timerEnabled: true,
     timeUp: false,
+    timerRunning: false, // Tracks if the interval is active
     hasBuzzed: false,
 
     buzzerMuted: localStorage.getItem("buzzerMuted") === "true",
@@ -28,6 +29,8 @@ function taboo() {
     // -----------------
     init() {
       document.documentElement.dataset.theme = this.theme;
+      // Initialize timeLeft immediately so the UI doesn't show 00:00
+      this.timeLeft = this.timerDuration;
       this.loadDeck();
     },
 
@@ -38,7 +41,7 @@ function taboo() {
       this.stopTimer();
 
       try {
-        const res = await fetch(`./decks/${this.selectedDeck}.json`);
+        const res = await fetch(`./assets/decks/${this.selectedDeck}.json`);
         const data = await res.json();
 
         this.cards = data.cards || [];

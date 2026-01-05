@@ -1,0 +1,396 @@
+:root {
+  --bg: #020617;
+  --text: #e5e7eb;
+  --accent: #38bdf8;
+  --muted: #94a3b8;
+  --danger: #dc2626;
+  --border: #1e293b;
+  --panel: rgba(2, 6, 23, 0.95);
+  /* Reserved heights to prevent layout shifts */
+  --h-height: 72px;
+  --f-height: 72px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* 1. ALPINE CLOAK & RESET */
+[x-cloak] {
+  display: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Fixes mobile chrome font shrinking */
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. HEADER & FOOTER SLOTS (Reserves space) */
+.header-slot {
+  height: var(--h-height);
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.footer-slot {
+  min-height: var(--f-height);
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+  /* Pushes to bottom */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Styling injected titles */
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* 3. MAIN CONTENT */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 20px;
+}
+
+.rules-container {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 4. SVG EXPLAINER - VISIBILITY & RED ANIMATION */
+.svg-slot {
+  width: 100%;
+  min-height: 200px;
+  /* Space reserved for loading */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fix for the SVG Visibility */
+.svg-slot {
+  width: 100%;
+  min-height: 200px;
+  /* Reserves space to prevent flash/shift */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  /* Ensures shadows aren't cut off */
+}
+
+/* Forces the SVG to be visible and responsive */
+.svg-slot svg {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 500px;
+  display: block;
+}
+
+/* ANIMATION: Glowing Pulsing X */
+@keyframes xGlow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    stroke-width: 3;
+  }
+
+  50% {
+    opacity: 1;
+    stroke-width: 5;
+    filter: drop-shadow(0 0 5px var(--danger));
+  }
+}
+
+.cross line {
+  stroke: var(--danger);
+  stroke-linecap: round;
+  animation: xGlow 1.5s infinite ease-in-out;
+}
+
+/* ANIMATION: Dashed arrows */
+.arrows path {
+  fill: none;
+  stroke: var(--danger);
+  stroke-width: 2.5;
+  stroke-dasharray: 5 5;
+  animation: arrowPulse 1.2s infinite;
+}
+
+/* Central Term Box */
+.term-box {
+  fill: var(--panel);
+  stroke: var(--accent);
+  stroke-width: 3;
+  filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.4));
+}
+
+.term-text {
+  fill: var(--accent);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+/* RED Forbidden Blocks */
+.forbidden-group rect {
+  fill: rgba(220, 38, 38, 0.25);
+  /* Solid-feeling red background */
+  stroke: var(--danger);
+  stroke-width: 2;
+}
+
+.forbidden-group text {
+  fill: var(--danger);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ANIMATED Cross/X Marks */
+@keyframes xFlash {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    stroke-width: 3;
+  }
+
+  50% {
+    opacity: 1;
+    stroke-width: 5;
+    filter: drop-shadow(0 0 8px var(--danger));
+  }
+}
+
+.cross line {
+  stroke: var(--danger);
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: xFlash 1.5s infinite ease-in-out;
+}
+
+/* Dashed Arrow Animation */
+@keyframes arrowPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.arrows path {
+  fill: none;
+  stroke: var(--danger);
+  stroke-width: 3;
+  stroke-dasharray: 6 6;
+  animation: arrowPulse 1.4s infinite;
+}
+
+/* 5. RULES LIST & UI */
+.rules {
+  width: 100%;
+  padding-left: 1.5rem;
+  margin: 0;
+}
+
+.rules li {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #cbd5f5;
+  margin-bottom: 12px;
+}
+
+.highlight {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.forbidden {
+  background: color-mix(in srgb, var(--danger) 18%, transparent);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-weight: 700;
+  color: var(--danger);
+}
+
+.settings {
+  display: grid;
+  gap: 20px;
+  width: 30vw;
+  margin-bottom: 1rem;
+}
+
+.setting {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.setting label {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+select {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  /* Extra right padding for the icon */
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  border: 2px solid var(--border);
+  background-color: var(--bg);
+  color: var(--text);
+
+  /* 🔑 This removes the default browser arrow */
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* 🔑 This adds the custom modern arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2338bdf8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover & Focus states for better UX */
+select:hover {
+  border-color: var(--muted);
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+/* Ensure options look decent on desktop */
+select option {
+  background-color: #1e293b;
+  color: var(--text);
+  padding: 12px;
+  font-size: 1rem;
+}
+
+.start-game {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 18px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 18px;
+  text-decoration: none;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.start-game:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(56, 189, 248, 0.3);
+}
+
+/* =========================
+   MOBILE OPTIMIZATIONS
+   ========================= */
+
+@media (max-width: 480px) {
+  :root {
+    --h-height: 64px;
+  }
+
+  /* 1. FONT SIZE FIX: Much larger for mobile Chrome */
+  .rules li {
+    font-size: 1.45rem !important;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .app-main {
+    padding: 16px 16px;
+    justify-content: flex-start;
+    /* Tighten white space at bottom */
+  }
+
+  .rules-container {
+    gap: 1.5rem;
+    /* Less white space between blocks */
+  }
+
+  /* 2. SVG SCALING: Prevent it from taking too much height */
+  .svg-slot {
+    min-height: 140px;
+  }
+
+  .svg-slot svg {
+    max-width: 320px;
+  }
+
+  .app-title {
+    font-size: 1.35rem;
+  }
+
+  .settings {
+    width: 80vw;
+  }
+}
+
+/* Small heights (iPhone SE / Landscape) */
+@media (max-height: 660px) {
+  .svg-slot {
+    display: none;
+  }
+
+  .settings {
+    width: 80vw;
+  }
+
+  /* Remove SVG to prioritize rules on tiny screens */
+  .rules-container {
+    gap: 1rem;
+  }
+
+  .rules li {
+    font-size: 1.2rem !important;
+  }
+}

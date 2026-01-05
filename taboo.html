@@ -4,20 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tech Taboo</title>
+  <title>Tech Taboo: Game</title>
 
   <!-- Game CSS -->
-  <link rel="stylesheet" href="./css/taboo.css" />
+  <link rel="stylesheet" href="./assets/styles/taboo.css" />
 
-  <!-- Alpine.js -->
-  <!--<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>-->
 </head>
 
 <body class="game-page" x-data="taboo()" x-init="init()" @keydown.window="keys($event)">
 
   <!-- HEADER -->
   <header class="app-header">
-    <a href="./index.html" class="home-link">🏠</a>
+    <a href="./index.html" class="home-link" title="home">🏠</a>
     <div class="timer" :class="timerClass" x-text="timeDisplay"></div>
     <button class="hamburger mobile-only" @click="menuOpen = !menuOpen">☰</button>
 
@@ -89,7 +87,7 @@
   </footer>
 
   <audio id="buzzer" preload="auto">
-    <source src="./sounds/buzzer.mp3" type="audio/mpeg" />
+    <source src="./assets/sounds/buzzer.mp3" type="audio/mpeg" />
   </audio>
 
 

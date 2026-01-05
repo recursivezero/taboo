@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Tech Taboo</title>
+  <link rel="stylesheet" href="./assets/styles/rules.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body x-cloak x-data="{ 
+    pageTitle: '🎯 Tech Taboo', 
+    headerHtml: '', 
+    svgHtml: '', 
+    footerHtml: '',
+    decks: [],
+    selectedDeck: localStorage.getItem('selectedDeck') || '',
+    timerDuration: localStorage.getItem('timerDuration') || '120'
+  }" x-init="
+    /* Consolidate all fetches for production performance */
+    Promise.all([
+      fetch('./partials/header.html').then(r => r.text()),
+      fetch('./partials/footer.html').then(r => r.text()),
+      fetch('./assets/hint.svg').then(r => r.text()),
+      fetch('./assets/decks/index.json').then(r => {
+        if (!r.ok) throw new Error('Deck index not found');
+        return r.json();
+      })
+    ]).then(([h, f, s, d]) => {
+      headerHtml = h;
+      svgHtml = s;
+      footerHtml = f;
+      decks = d.decks;
+      
+      /* Set default deck if none saved */
+      if (!selectedDeck && decks.length > 0) selectedDeck = decks[0].key;
+    });
+
+    /* Automatically persist changes to localStorage */
+    $watch('selectedDeck', val => localStorage.setItem('selectedDeck', val));
+    $watch('timerDuration', val => localStorage.setItem('timerDuration', val));
+  ">
+
+  <div class="header-slot" x-html="headerHtml"></div>
+
+  <main class="app-main">
+    <div class="rules-container">
+      <!-- SVG -->
+      <div class="svg-slot" x-html="svgHtml"></div>
+      <!-- RULES -->
+      <ol class="rules">
+        <li>One person <strong>explains</strong> the word on screen.</li>
+        <li>Do <span class="highlight">NOT</span> use the <span class="forbidden">forbidden</span> words.</li>
+        <li>The audience <strong>guesses</strong> the term.</li>
+        <li>If a forbidden word is spoken → <span class="highlight">skip the card</span>.</li>
+        <li>Hints and analogies are allowed. Buzzwords are not.</li>
+      </ol>
+    </div>
+    <!-- SETTINGS -->
+    <div class="settings">
+      <div class="setting">
+        <label for="deckSelect">Choose deck</label>
+        <div class="select-wrapper">
+          <select id="deckSelect" x-model="selectedDeck">
+            <template x-for="deck in decks" :key="deck.key">
+              <option :value="deck.key" x-text="deck.name"></option>
+            </template>
+          </select>
+        </div>
+      </div>
+      <div class="setting">
+        <label for="timerSelect">Timer duration</label>
+        <select id="timerSelect" x-model="timerDuration">
+          <option value="30">30 seconds</option>
+          <option value="60">1 minute</option>
+          <option value="120" selected>2 minutes</option>
+        </select>
+      </div>
+    </div>
+    <!-- START -->
+    <a class="start-game" href="./taboo.html" id="startGame">
+      Start Game
+    </a>
+  </main>
+
+  <div class="footer-slot" x-html="footerHtml"></div>
+</body>
+
+</html>
