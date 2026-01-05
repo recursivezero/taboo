@@ -87,7 +87,7 @@ No build tools. No framework lock-in. No backend.
     │   │   └── web.json
     │   ├── hint.svg
     │   ├── screenshots/
-    │   │   ├── Home.png
+    │   │   ├── home.png
     │   │   └── game.png
     │   ├── sounds/
     │   │   └── buzzer.mp3
@@ -100,8 +100,6 @@ No build tools. No framework lock-in. No backend.
     ├── partials/
     │   ├── footer.html
     │   └── header.html
-    ├── src/
-    │   └── index.js
     ├── taboo.code-workspace
     └── taboo.html
 ```
