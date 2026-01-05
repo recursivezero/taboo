@@ -36,18 +36,99 @@ body {
 }
 
 /* 2. HEADER & FOOTER SLOTS (Reserves space) */
-.header-slot {
-  height: var(--h-height);
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
-  display: flex;
+
+
+.app-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(8px);
+  padding: 1.2rem 2rem;
+  background: #000000;
+  /* Pure black for maximum contrast */
+  border-bottom: 1px solid #1a1a1a;
 }
+
+.app-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.rainbow-text {
+  font-size: 1.1rem;
+  /* Larger font size */
+  font-weight: 700;
+  letter-spacing: 0.05rem;
+  text-align: center;
+
+  /* High-Vibrancy Neon Gradient */
+  background: linear-gradient(to right,
+      #00f2ff,
+      /* Cyan */
+      #00ff9d,
+      /* Spring Green */
+      #ccff00,
+      /* Lime */
+      #ffcc00,
+      /* Gold */
+      #ff00ea,
+      /* Magenta */
+      #00f2ff
+      /* Back to Cyan */
+    );
+
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: rainbow-flow 3s linear infinite;
+}
+
+@keyframes rainbow-flow {
+  0% {
+    background-position: 0% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.header-right {
+  justify-self: end;
+}
+
+.github-link {
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.github-link:hover {
+  color: #fff;
+  filter: drop-shadow(0 0 8px #fff);
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .rainbow-text {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-center {
+    display: none;
+    /* Hide tagline on mobile to save space */
+  }
+
+  .app-header {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
 
 .footer-slot {
   min-height: var(--f-height);
