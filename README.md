@@ -46,9 +46,65 @@ No build tools. No framework lock-in. No backend.
 
 ---
 
+## Screenshots
+
+### Home Page
+
+- Rules
+- Select Deck
+- Select Timer
+
+![Home Page](assets/screenshots/home.png)
+
+### Game Page
+
+- Header --> Home | Timer | Settings
+- Main --> Forbidden Word List | Main Term in center of the page
+- Footer -> Prev | Deck Name | Next
+
+![Game page](assets/screenshots/game.png)
+
+### Mobile View
+
+![mobile view home ](assets/screenshots/mobile_home.png)
+
+![mobile view game](assets/screenshots/mobile_game.png)
+
 ## Project Structure
 
-all files are under `docs` folder for GitHub pages hosting purpose
+```plaintext
+└── taboo/
+    ├── CHANGELOG.md
+    ├── LICENSE
+    ├── README.md
+    ├── assets/
+    │   ├── decks/
+    │   │   ├── css.json
+    │   │   ├── html.json
+    │   │   ├── index.json
+    │   │   ├── javascript.json
+    │   │   ├── react.json
+    │   │   └── web.json
+    │   ├── hint.svg
+    │   ├── screenshots/
+    │   │   ├── Home.png
+    │   │   └── game.png
+    │   ├── sounds/
+    │   │   └── buzzer.mp3
+    │   └── styles/
+    │       ├── rules.css
+    │       └── taboo.css
+    ├── index.html
+    ├── js/
+    │   └── taboo.js
+    ├── partials/
+    │   ├── footer.html
+    │   └── header.html
+    ├── src/
+    │   └── index.js
+    ├── taboo.code-workspace
+    └── taboo.html
+```
 
 ---
 
@@ -108,19 +164,17 @@ It was built in about 5–6 hours as a focused learning-in-public project.
 
 ## Contributing
 
-Contributions are welcome.
+Contributions are welcome. Some ideas you could explore:
 
-Some ideas you could explore:
+- New decks (frontend, backend, system design, etc.)
 
-New decks (frontend, backend, system design, etc.)
+- Team scoring mode
 
-Team scoring mode
+- Swipe-only navigation for mobile
 
-Swipe-only navigation for mobile
+- Accessibility improvements
 
-Accessibility improvements
-
-Visual timer indicators
+- Visual timer indicators
 
 Feel free to fork, experiment, and adapt it for your use case.
 

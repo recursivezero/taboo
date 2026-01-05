@@ -23,7 +23,6 @@
 
 html {
   -webkit-text-size-adjust: 100%;
-  /* Fixes mobile chrome font shrinking */
   height: 100%;
 }
 
@@ -90,7 +89,6 @@ body {
 .svg-slot {
   width: 100%;
   min-height: 200px;
-  /* Space reserved for loading */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -100,15 +98,12 @@ body {
 .svg-slot {
   width: 100%;
   min-height: 200px;
-  /* Reserves space to prevent flash/shift */
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: visible;
-  /* Ensures shadows aren't cut off */
 }
 
-/* Forces the SVG to be visible and responsive */
 .svg-slot svg {
   width: 100% !important;
   height: auto !important;
@@ -130,21 +125,6 @@ body {
     stroke-width: 5;
     filter: drop-shadow(0 0 5px var(--danger));
   }
-}
-
-.cross line {
-  stroke: var(--danger);
-  stroke-linecap: round;
-  animation: xGlow 1.5s infinite ease-in-out;
-}
-
-/* ANIMATION: Dashed arrows */
-.arrows path {
-  fill: none;
-  stroke: var(--danger);
-  stroke-width: 2.5;
-  stroke-dasharray: 5 5;
-  animation: arrowPulse 1.2s infinite;
 }
 
 /* Central Term Box */
@@ -250,8 +230,9 @@ body {
 .settings {
   display: grid;
   gap: 20px;
-  width: 30vw;
-  margin-bottom: 1rem;
+  max-width: 600px;
+  width: 100%;
+  padding: 1rem;
 }
 
 .setting {
